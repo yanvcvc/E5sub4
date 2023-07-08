@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="1.css">
+</head>
+<body>
+    <div class="project"">
+        <div class=" credits"">
+	<h1>Made By Diabolical</h1>
+</div>
+<div class="container">
+	<div class="text">
+		<h1>Match the Color!</h1>
+		<p>Try to memorize the color displayed. You gain points depending on how close you get to the displayed
+			color.
+			Perfect match gives you 1000 points! Good luck!</p>
+
+		<div class="scores">
+			<div id="message"></div>
+			<h2>Total Score: <span id="totalScore">0</span></h2>
+			<div id="rounds"></div>
+		</div>
+
+	</div>
+	<div class="game">
+		<div class="seperator">
+			<div class="controls">
+				<div class="input-wrapper">
+					<input id="colorPicker" type="color">
+					<img src="https://yoolk.ninja/wp-content/uploads/2020/06/Apps-Color-Picker-1024x1024.png" />
+				</div>
+				<button id="checkButton">
+					<h2 style="mix-blend-mode: difference;">Check Match</h2>
+				</button>
+			</div>
+			<div id="colorBlock"></div>
+		</div>
+	</div>
+
+</div>
+</div>
+<script src="1.js"></script>
+</body>
+</html>

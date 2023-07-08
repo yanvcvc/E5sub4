@@ -1,0 +1,272 @@
+@import url("https://fonts.googleapis.com/css2?family=Bungee&family=Inconsolata:wght@300&display=swap");
+
+/* Animations */
+@-webkit-keyframes bg-scrolling-reverse {
+	100% {
+		background-position: 50px 50px;
+	}
+}
+
+@-moz-keyframes bg-scrolling-reverse {
+	100% {
+		background-position: 50px 50px;
+	}
+}
+
+@-o-keyframes bg-scrolling-reverse {
+	100% {
+		background-position: 50px 50px;
+	}
+}
+
+@keyframes bg-scrolling-reverse {
+	100% {
+		background-position: 50px 50px;
+	}
+}
+
+@-webkit-keyframes bg-scrolling {
+	0% {
+		background-position: 50px 50px;
+	}
+}
+
+@-moz-keyframes bg-scrolling {
+	0% {
+		background-position: 50px 50px;
+	}
+}
+
+@-o-keyframes bg-scrolling {
+	0% {
+		background-position: 50px 50px;
+	}
+}
+
+@keyframes bg-scrolling {
+	0% {
+		background-position: 50px 50px;
+	}
+}
+
+body {
+	font-family: "Inconsolata", sans-serif;
+	background-color: #212121;
+	color: #f0f0f0;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 100vh;
+	margin: 0;
+	padding: 20px;
+	box-sizing: border-box;
+	transition: all 0.3s ease-in-out;
+
+	/* img size is 50x50 */
+	background: url("https://cdn.discordapp.com/attachments/1124065927718252584/1124065995762442250/indir.png")
+		repeat 0 0;
+	-webkit-animation: bg-scrolling-reverse 0.92s infinite;
+	/* Safari 4+ */
+	-moz-animation: bg-scrolling-reverse 0.92s infinite;
+	/* Fx 5+ */
+	-o-animation: bg-scrolling-reverse 0.92s infinite;
+	/* Opera 12+ */
+	animation: bg-scrolling-reverse 0.92s infinite;
+	/* IE 10+ */
+	-webkit-animation-timing-function: linear;
+	-moz-animation-timing-function: linear;
+	-o-animation-timing-function: linear;
+	animation-timing-function: linear;
+}
+
+h1 {
+	font-family: "Bungee";
+	text-align: left;
+	line-height: 120%;
+	margin: 0;
+}
+
+p {
+	font-size: clamp(10px, 2vw, 18px);
+	text-align: left;
+	margin: auto;
+}
+
+h2 {
+	transition: all 0.3s ease-in-out;
+	font-family: "Bungee";
+	font-size: 2vw;
+	line-height: 120%;
+}
+
+.container {
+	text-align: center;
+	width: 70vw;
+	height: 70vh;
+	background-color: #212121;
+
+	border-style: solid;
+	border-width: 2px;
+	border-color: #444444;
+
+	padding: 20px;
+
+	display: flex;
+
+	overflow: hidden;
+
+	border-radius: 20px;
+	min-width: fit-content;
+}
+
+.text {
+	padding: 20px;
+	background-color: #161616;
+	border-radius: 14px;
+
+	max-width: 300px;
+	margin-right: 20px;
+
+	display: flex;
+	flex-direction: column;
+}
+
+.game {
+	width: 100%;
+
+	padding: 20px;
+	background-color: #161616;
+	border-radius: 14px;
+	display: block;
+}
+
+.scores {
+	border-radius: 10px;
+
+	overflow: auto;
+	padding: 10px;
+
+	background-color: #111111;
+	margin-top: auto;
+
+	height: 200px;
+	min-width: 200px;
+}
+
+.scores::-webkit-scrollbar {
+	display: none;
+	/* WebKit */
+}
+
+.seperator {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	height: 100%;
+}
+
+#colorBlock {
+	width: 100%;
+	height: 100%;
+	border-radius: 10px;
+	transition: all 0.5s ease-in-out;
+	min-width: 100px;
+}
+
+.controls {
+	display: flex;
+	align-items: center;
+	flex-direction: column;
+	width: -webkit-fill-available;
+	height: -webkit-fill-available;
+
+	position: relative;
+	margin-right: 20px;
+}
+
+#colorPicker {
+	opacity: 0;
+	width: 150px;
+	height: 150px;
+	cursor: cell;
+}
+
+.input-wrapper img {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 150px;
+	height: 150px;
+	pointer-events: none;
+}
+
+.input-wrapper {
+	position: relative;
+	margin: auto;
+}
+
+#checkButton {
+	width: 100%;
+	height: 220px;
+	font-family: "Bungee";
+
+	padding: 10px;
+	color: white;
+	background-color: #1e59f1;
+	border: none;
+	border-radius: 10px;
+	cursor: pointer;
+	transition: all 0.3s ease-in-out;
+
+	margin-top: auto;
+}
+
+#message {
+	transition: all 0.3s ease-in-out;
+}
+
+#rounds {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+}
+
+.project {
+	display: flex;
+	position: relative;
+	/* New style */
+}
+
+.credits {
+	display: flex;
+	position: absolute;
+	/* New style */
+	top: 0;
+	/* New style */
+	left: 0;
+	/* New style */
+	height: 100%;
+	/* New style */
+	align-items: center;
+	/* New style */
+	justify-content: center;
+	/* New style */
+}
+
+.credits h1 {
+	text-align: center;
+	transform: rotate(-90deg);
+	/* Change from rotate to transform: rotate */
+	margin-right: 50px;
+	white-space: nowrap;
+
+	position: absolute;
+	/* Prevent the text from breaking into multiple lines */
+}
+
+@media only screen and (max-width: 800px) {
+	p {
+		display: none;
+	}
+}
