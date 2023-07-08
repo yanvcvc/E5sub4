@@ -1,0 +1,165 @@
+/*
+Made by Dale de Silva
+designdebt.club
+twitter: @daledesilva
+*/
+
+html {
+    overflow: hidden;
+  }
+  
+  body {
+    background-color: #837980;
+    text-align: center;
+    font-family: Lato, cursive;
+    font-size: 16px;
+    overflow: hidden;
+  }
+  
+  main {
+    margin-top: 50vh;
+    translate: 0 -50%;
+    display: inline-block;
+    position: relative;
+    overflow: visible;
+  }
+  
+  #tooth-selector_radio {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+  }
+  
+  input[type="radio"] {
+    /* Can't use display none as it causes the :focus to not apply */
+    opacity: 0;
+    position: absolute;
+    width: 0;
+    height: 0;
+  }
+  
+  input[type="radio"]:checked + label {
+    background-color: #594f4e;
+    color: #ff7592;
+    box-shadow: none;
+  }
+  
+  input[type="radio"]:focus + label {
+    outline: 5px solid #ff7592;
+  }
+  
+  label {
+    background-color: white;
+    padding: 1ch;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    cursor: pointer;
+  }
+  
+  h1 {
+    margin-top: 10%;
+    margin-bottom: 0;
+    font-weight: 900;
+    font-size: 3.5em;
+    font-family: 'Square Peg', cursive;
+    color: #d3cbd2;
+  }
+  
+  p {
+    color: #2f292a;
+    font-size: 1.2em;
+    font-weight: 400;
+    margin-top: 0;
+    z-index: 5;
+  }
+  
+  #mouth-anims {
+    position: absolute;
+    top: -10%;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -10;  /* Place behind radio buttons so they're touchable */
+  }
+  
+  #mouth-anims.active {
+    z-index: 10;  /* Place above other elements */
+  }
+  
+  #mouth-anims-u-incisor-r,
+  #mouth-anims-u-incisor-l,
+  #mouth-anims-u-canine-r,
+  #mouth-anims-u-canine-l,
+  #mouth-anims-u-premolar-r,
+  #mouth-anims-u-premolar-l,
+  #mouth-anims-u-molar-r,
+  #mouth-anims-u-molar-l {
+    cursor: pointer;
+    filter: drop-shadow(0 0 5px rgba(0, 0, 0, .1));
+  }
+  
+  #incisor,
+  #canine,
+  #premolar,
+  #molar {
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 0;
+    pointer-events: none;
+    filter: drop-shadow(-10px -10px 100px rgba(0, 0, 0, .1));
+  }
+  
+  
+  /* Transitions & anims */
+  
+  label {
+    animation-duration: 0.5s;
+    animation-name: fade-on;
+    animation-timing-function: cubic-bezier(0.5, 1, 0.89, 1);
+    animation-fill-mode: both;
+  }
+  
+  label[for="tooth-set_incisor"] {
+    animation-delay: 1600ms;
+  }
+  label[for="tooth-set_canine"] {
+    animation-delay: 1100ms;
+  }
+  label[for="tooth-set_premolar"] {
+    animation-delay: 1500ms;
+  }
+  label[for="tooth-set_molar"] {
+    animation-delay: 1250ms;
+  } 
+  
+  h1 {
+    animation-duration: 1s;
+    animation-name: slide-up-on;
+    animation-timing-function: cubic-bezier(0.5, 1, 0.89, 1);
+    animation-fill-mode: both;
+    animation-delay: 1700ms;
+  }
+  
+  
+  @keyframes fade-on {
+    from {
+      scale: 0.8;
+      opacity: 0;
+    }
+    to {
+      scale: 1;
+      opacity: 1;
+    }
+  }
+  
+  @keyframes slide-up-on {
+    from {
+      translate: 0 20px;
+      opacity: 0;
+    }
+    to {
+      translate: 0;
+      opacity: 1;
+    }
+  }
