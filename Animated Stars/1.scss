@@ -1,0 +1,122 @@
+@import url('https://fonts.googleapis.com/css2?family=Orbit&display=swap');
+
+body {
+	background: #ECE5F0;
+	margin: 0; padding: 0;
+	font-family: "Orbit";
+	overflow: hidden;
+	
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	height: 100vh; width: 100vw;
+}
+
+h1 {
+	margin:0;
+	padding: 0;
+	font-weight: normal;
+}
+
+main {
+	background: #1B1B1E;
+	color: white;
+	min-width: 50%; margin: auto;
+	border-radius: 10px;
+	padding: 3em 0;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	text-align: center;
+	border: 2px solid #FF5E5B;
+	/*box-shadow: 0 10px 30px #FF5E5B;*/
+}
+
+ul {
+	list-style-type: none;
+	display: flex;
+	padding: 0;
+}
+
+li {
+	font-size: 300%;
+	position: relative;
+	transition: 0.2s ease-in all;
+	&:not(.off) {
+		animation: spin 0.5s;
+	}
+	&.off {
+		opacity: 0.25;
+		&:after {
+			animation: fade-down 1s forwards;
+		}
+	}
+	&:before {
+		content: "⭐";
+	}
+	&:after {
+		content: "⭐";
+		position: absolute;
+		top: 0; left: 0;
+	}
+	&:hover {
+		opacity: 0.7;
+		cursor: pointer;
+		transform: scale(1.05) rotate(5deg);
+	}
+	
+	span {
+		position: absolute;
+		top: 0; left: 0;
+		font-size: 10%;
+		opacity: 0;
+		animation: pew 1s forwards;
+		animation-delay: var(--d, 0ms);
+	}
+}
+
+@keyframes pew {
+	from {
+		left: 50%;
+		top: 50%;
+		opacity: 0;
+		font-size: 10%;
+	}
+	10%{
+		opacity: 1;
+	}
+	50% {
+		opacity: 0.7;
+	}
+	80% {
+		opacity: 0;
+	}
+	99% {
+    left: var(--l, 150%);
+    top: var(--t, 150%);
+		opacity: 0;
+		font-size: 50%;
+  }
+	to {
+		opacity: 0;
+		font-size: 100%;
+	}
+}
+
+@keyframes fade-down {
+	to {
+		transform: translateY(100px) scale(1.5) rotate(90deg);
+		opacity: 0;
+	}
+}
+
+@keyframes spin {
+	from {
+		transform: rotateY(0deg);
+	}
+	to {
+		transform: rotateY(360deg);
+	}
+}
