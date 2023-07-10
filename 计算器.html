@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Calculator</title>
+  <style>
+    .calculator {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 10px;
+      max-width: 300px;
+      margin: 0 auto;
+      padding: 10px;
+      border: 1px solid #ccc;
+    }
+
+    .calculator button {
+      padding: 10px;
+    }
+
+    .result {
+      grid-column: span 4;
+      text-align: right;
+      padding: 10px;
+      background-color: #f9f9f9;
+      border: 1px solid #ccc;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="calculator" id="calculator">
+    <div class="result" id="result">0</div>
+    <button onclick="clearResult()">C</button>
+    <button onclick="appendNumber(7)">7</button>
+    <button onclick="appendNumber(8)">8</button>
+    <button onclick="appendNumber(9)">9</button>
+    <button onclick="appendOperator('+')">+</button>
+    <button onclick="appendNumber(4)">4</button>
+    <button onclick="appendNumber(5)">5</button>
+    <button onclick="appendNumber(6)">6</button>
+    <button onclick="appendOperator('-')">-</button>
+    <button onclick="appendNumber(1)">1</button>
+    <button onclick="appendNumber(2)">2</button>
+    <button onclick="appendNumber(3)">3</button>
+    <button onclick="appendOperator('*')">*</button>
+    <button onclick="appendNumber(0)">0</button>
+    <button onclick="calculate()">=</button>
+    <button onclick="appendOperator('/')">/</button>
+  </div>
+
+  <script>
+    let result = 0;
+    let currentInput = '0';
+    let currentOperator = '';
+    const resultElement = document.getElementById('result');
+
+    function updateResult() {
+      resultElement.textContent = currentInput;
+    }
+
+    function appendNumber(number) {
+      if (currentInput === '0') {
+        currentInput = number.toString();
+      } else {
+        currentInput += number.toString();
+      }
+      updateResult();
+    }
+
+    function appendOperator(operator) {
+      if (currentOperator !== '') {
+        calculate();
+      }
+      result = parseFloat(currentInput);
+      currentOperator = operator;
+      currentInput = '0';
+      updateResult();
+    }
+
+    function calculate() {
+      const input = parseFloat(currentInput);
+      if (currentOperator === '+') {
+        result += input;
+      } else if (currentOperator === '-') {
+        result -= input;
+      } else if (currentOperator === '*') {
+        result *= input;
+      } else if (currentOperator === '/') {
+        result /= input;
+      }
+      currentInput = result.toString();
+      currentOperator = '';
+      updateResult();
+    }
+
+    function clearResult() {
+      result = 0;
+      currentInput = '0';
+      currentOperator = '';
+      updateResult();
+    }
+  </script>
+</body>
+
+</html>
