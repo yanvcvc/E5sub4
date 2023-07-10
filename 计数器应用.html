@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Counter</title>
+  <style>
+    .counter {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 200px;
+      font-size: 48px;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="counter" id="counter">0</div>
+  <button onclick="increment()">增加</button>
+  <button onclick="decrement()">减少</button>
+  <button onclick="reset()">重置</button>
+
+  <script>
+    let counterValue = 0;
+    const counterElement = document.getElementById('counter');
+
+    function updateCounter() {
+      counterElement.textContent = counterValue;
+    }
+
+    function increment() {
+      counterValue++;
+      updateCounter();
+    }
+
+    function decrement() {
+      counterValue--;
+      updateCounter();
+    }
+
+    function reset() {
+      counterValue = 0;
+      updateCounter();
+    }
+  </script>
+</body>
+
+</html>
