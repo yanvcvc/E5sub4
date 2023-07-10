@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Online Shop</title>
+  <style>
+    .product-list {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+      margin-bottom: 20px;
+    }
+
+    .product {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      border: 1px solid #ccc;
+      padding: 10px;
+    }
+
+    .product img {
+      width: 150px;
+      height: 150px;
+      object-fit: cover;
+      margin-bottom: 10px;
+    }
+
+    .cart {
+      margin-bottom: 20px;
+    }
+
+    .cart-item {
+      display: flex;
+      align-items: center;
+      margin-bottom: 5px;
+    }
+
+    .cart-item input[type="number"] {
+      width: 40px;
+      margin-right: 5px;
+    }
+
+    .total {
+      font-weight: bold;
+    }
+  </style>
+</head>
+
+<body>
+  <h1>Online Shop</h1>
+
+  <div class="product-list">
+    <div class="product">
+      <img src="product1.jpg" alt="Product 1">
+      <h3>Product 1</h3>
+      <p>$10</p>
+      <button onclick="addToCart('Product 1', 10)">Add to Cart</button>
+    </div>
+    <div class="product">
+      <img src="product2.jpg" alt="Product 2">
+      <h3>Product 2</h3>
+      <p>$15</p>
+      <button onclick="addToCart('Product 2', 15)">Add to Cart</button>
+    </div>
+    <div class="product">
+      <img src="product3.jpg" alt="Product 3">
+      <h3>Product 3</h3>
+      <p>$20</p>
+      <button onclick="addToCart('Product 3', 20)">Add to Cart</button>
+    </div>
+  </div>
+
+  <div class="cart">
+    <h2>Cart</h2>
+    <ul class="cart-items" id="cart-items"></ul>
+    <p class="total">Total: $<span id="cart-total">0</span></p>
+  </div>
+
+  <script>
+    let cartItems = [];
+
+    function addToCart(name, price) {
+      const existingItem = cartItems.find(item => item.name === name);
+
+      if (existingItem) {
+        existingItem.quantity++;
+      } else {
+        cartItems.push({
+          name,
+          price,
+          quantity: 1
+        });
+      }
+
+      renderCart();
+    }
+
+    function updateQuantity(index, quantity) {
+      cartItems[index].quantity = quantity;
+      renderCart();
+    }
+
+    function removeFromCart(index) {
+      cartItems.splice(index, 1);
+      renderCart();
+    }
+
+    function calculateTotal() {
+      let total = 0;
+
+      cartItems.forEach(item => {
+        total += item.price * item.quantity;
+      });
+
+      return total;
+    }
+
+    function renderCart() {
+      const cartItemsElement = document.getElementById('cart-items');
+      const cartTotalElement = document.getElementById('cart-total');
+
+      cartItemsElement.innerHTML = '';
+
+      cartItems.forEach((item, index) => {
+        const cartItemElement = document.createElement('li');
+        cartItemElement.className = 'cart-item';
+
+        const quantityInput = document.createElement('input');
+        quantityInput.type = 'number';
+        quantityInput.value = item.quantity;
+        quantityInput.min = 1;
+        quantityInput.addEventListener('change', (event) => updateQuantity(index, parseInt(event.target.value)));
+        cartItemElement.appendChild(quantityInput);
+
+        const itemNameElement = document.createElement('span');
+        itemNameElement.textContent = item.name;
+        cartItemElement.appendChild(itemNameElement);
+
+        const removeButton = document.createElement('button');
+        removeButton.textContent = 'Remove';
+        removeButton.addEventListener('click', () => removeFromCart(index));
+        cartItemElement.appendChild(removeButton);
+
+        cartItemsElement.appendChild(cartItemElement);
+      });
+
+      cartTotalElement.textContent = calculateTotal();
+    }
+  </script>
+</body>
+
+</html>
