@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Music Player</title>
+</head>
+
+<body>
+  <h1>Music Player</h1>
+
+  <div>
+    <button onclick="play()">播放</button>
+    <button onclick="pause()">暂停</button>
+    <button onclick="stop()">停止</button>
+    <button onclick="prev()">上一曲</button>
+    <button onclick="next()">下一曲</button>
+  </div>
+
+  <script>
+    const playlist = [
+      'song1.mp3',
+      'song2.mp3',
+      'song3.mp3'
+    ];
+
+    let currentIndex = 0;
+    let audioPlayer = new Audio();
+
+    function play() {
+      audioPlayer.src = playlist[currentIndex];
+      audioPlayer.play();
+    }
+
+    function pause() {
+      audioPlayer.pause();
+    }
+
+    function stop() {
+      audioPlayer.pause();
+      audioPlayer.currentTime = 0;
+    }
+
+    function prev() {
+      currentIndex = (currentIndex - 1 + playlist.length) % playlist.length;
+      play();
+    }
+
+    function next() {
+      currentIndex = (currentIndex + 1) % playlist.length;
+      play();
+    }
+  </script>
+</body>
+
+</html>
