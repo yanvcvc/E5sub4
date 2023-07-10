@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Todo List</title>
+  <style>
+    ul {
+      list-style: none;
+      padding: 0;
+    }
+  </style>
+</head>
+
+<body>
+  <h1>Todo List</h1>
+
+  <form id="todo-form">
+    <input type="text" id="todo-input" placeholder="输入待办事项">
+    <button type="submit">添加</button>
+  </form>
+
+  <ul id="todo-list"></ul>
+
+  <script>
+    // 待办事项列表数组
+    let todos = [];
+
+    // 添加待办事项
+    function addTodo() {
+      const todoInput = document.getElementById('todo-input');
+      const todoText = todoInput.value.trim();
+
+      if (todoText !== '') {
+        todos.push({
+          id: todos.length + 1,
+          text: todoText,
+          completed: false
+        });
+
+        todoInput.value = '';
+        renderTodos();
+      }
+    }
+
+    // 完成待办事项
+    function toggleComplete(id) {
+      todos = todos.map(todo => {
+        if (todo.id === id) {
+          return {
+            ...todo,
+            completed: !todo.completed
+          };
+        }
+        return todo;
+      });
+
+      renderTodos();
+    }
+
+    // 删除待办事项
+    function deleteTodo(id) {
+      todos = todos.filter(todo => todo.id !== id);
+      renderTodos();
+    }
+
+    // 渲染待办事项列表
+    function renderTodos() {
+      const todoList = document.getElementById('todo-list');
+      todoList.innerHTML = '';
+
+      todos.forEach(todo => {
+        const todoItem = document.createElement('li');
+        todoItem.innerHTML = `
+          <input type="checkbox" ${todo.completed ? 'checked' : ''} onchange="toggleComplete(${todo.id})">
+          <span>${todo.text}</span>
+          <button onclick="deleteTodo(${todo.id})">删除</button>
+        `;
+        todoList.appendChild(todoItem);
+      });
+    }
+
+    // 监听表单提交事件
+    const todoForm = document.getElementById('todo-form');
+    todoForm.addEventListener('submit', function (event) {
+      event.preventDefault();
+      addTodo();
+    });
+  </script>
+</body>
+
+</html>
